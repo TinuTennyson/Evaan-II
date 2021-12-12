@@ -13,7 +13,7 @@ RUN mvn package -DskipTests
 FROM adoptopenjdk/openjdk11:alpine-jre
 
 # Copy jar to the production image from the builder stage
-COPY --frombuilder /app/target/EurekaGCPDataBase-0.0.1-SNAPSHOT.jar /EurekaGCPDataBase-0.0.1-SNAPSHOT.jar
+COPY --from=builder /app/target/EurekaGCPDataBase-0.0.1-SNAPSHOT.jar /EurekaGCPDataBase-0.0.1-SNAPSHOT.jar
 
 #Run the webservice
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/EurekaGCPDataBase-0.0.1-SNAPSHOT"]
