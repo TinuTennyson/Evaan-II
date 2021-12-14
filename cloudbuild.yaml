@@ -12,6 +12,4 @@ steps:
   - --filename=kubernetes-config
   - --image=gcr.io/${PROJECT_ID}/evaan-gke-buildtrigger:v1
   - --location=us-central1-c
-  - --cluster=tinu-cluster-1
-  - --expose=8080
-  
+  - --cluster=tinu-cluster-1  
