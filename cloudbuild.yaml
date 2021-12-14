@@ -9,7 +9,6 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=/app/kubernetes-config
   - --image=gcr.io/${PROJECT_ID}/evaan-gke-buildtrigger:v1
   - --location=us-central1-c
   - --cluster=tinu-cluster-1  
