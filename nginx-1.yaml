@@ -105,7 +105,7 @@ spec:
         app: nginx-1
     spec:
       containers:
-      - image: gcr.io/evaan-332713/github_tinutennyson_evaan-ii:105f27b
+      - image: gcr.io/$PROJECT_ID/evaan-gke-buildtrigger:v1
         imagePullPolicy: IfNotPresent
         name: github-tinutennyson-evaan-ii-1
         resources: {}
