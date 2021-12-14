@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "evaan-gke-buildtrigger-sha256-1"
-        image: "gcr.io/evaan-332713/evaan-gke-buildtrigger@sha256:8e12fb96bd23167de671d6aef3389203021a591e8123240917516fa74e9067d9"
+        image: "gcr.io/evaan-332713/evaan-gke-buildtrigger:$SHORT_SHA"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
