@@ -5,7 +5,6 @@ FROM maven:3.8-jdk-11 as builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-COPY kubernetes-config.yaml .
 
 # Build a release artifact
 RUN mvn package -DskipTests
