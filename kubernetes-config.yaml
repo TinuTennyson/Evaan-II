@@ -1,41 +1,36 @@
----
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: v1
+kind: Service
 metadata:
-  name: "nginx-1"
+  annotations:
+  name: demo-app
+spec:
+  selector:
+    app: demo-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: demo-app
   namespace: "default"
   labels:
-    app: "nginx-1"
+    app: demo-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: "nginx-1"
+      app: demo-app  
   template:
     metadata:
       labels:
-        app: "nginx-1"
+        app: demo-app
     spec:
-      containers:
-      - name: "evaan-gke-buildtrigger-sha256-1"
-        image: "gcr.io/evaan-332713/evaan-gke-buildtrigger:$SHORT_SHA"
----
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
-metadata:
-  name: "nginx-1-hpa-thvv"
-  namespace: "default"
-  labels:
-    app: "nginx-1"
-spec:
-  scaleTargetRef:
-    kind: "Deployment"
-    name: "nginx-1"
-    apiVersion: "apps/v1"
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: "Resource"
-    resource:
-      name: "cpu"
-      targetAverageUtilization: 80
+      containers: 
+      - name: demo-app
+        image: gcr.io/evaan-332713/evaan-gke-buildtrigger:v1
+        ports:
+        - containerPort: 5001     
